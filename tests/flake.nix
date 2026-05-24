@@ -117,6 +117,7 @@
                 testConfig
               ];
               virtualisation.diskSize = 2048; # 2GiB
+              virtualisation.memorySize = 512; # 512MiB
               environment.systemPackages = [ pkgs.curl ];
               specialisation = builtins.mapAttrs (name: value: { configuration = value; }) (specialisation attrs);
             };
@@ -156,6 +157,7 @@
                 testConfig
               ];
               virtualisation.diskSize = 2048; # 2GiB
+              virtualisation.memorySize = 512; # 512MiB
               environment.systemPackages = [ pkgs.curl ];
               specialisation = builtins.mapAttrs (name: value: { configuration = value; }) (specialisation attrs);
 
@@ -203,6 +205,7 @@
                 home-manager.nixosModules.home-manager
               ];
               virtualisation.diskSize = 2048; # 2GiB
+              virtualisation.memorySize = 512; # 512MiB
               virtualisation.quadlet.enable = true;
               environment.systemPackages = [ pkgs.curl ];
 
