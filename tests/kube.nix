@@ -58,7 +58,7 @@
     };
   testScript = ''
     machine.wait_for_unit("foo.service", user=systemd_user, timeout=60)
-    assert "nginx" in machine.succeed("curl http://127.0.0.1:8080").lower()
+    assert "nginx" in machine.wait_until_succeeds("curl http://127.0.0.1:8080", timeout=5).lower()
 
     containers = get_containers()
     assert len(containers) >= 2

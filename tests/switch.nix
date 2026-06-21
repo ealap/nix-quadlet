@@ -40,7 +40,7 @@ in
 
   testScript = ''
     def check(expected_networks: set[str]) -> None:
-      assert "nginx" in machine.succeed("curl http://127.0.0.1:8080").lower()
+      assert "nginx" in machine.wait_until_succeeds("curl http://127.0.0.1:8080", timeout=5).lower()
       containers = get_containers()
       assert containers.keys() == {"nginx"}
       networks = get_networks()

@@ -15,7 +15,7 @@
     };
   testScript = ''
     machine.wait_for_unit("nginx.service", user=systemd_user, timeout=30)
-    assert 'nginx' in machine.succeed("curl http://127.0.0.1:8080").lower()
+    assert 'nginx' in machine.wait_until_succeeds("curl http://127.0.0.1:8080", timeout=5).lower()
     containers = get_containers()
     assert containers.keys() == {"nginx"}
     if podman_user is not None:
@@ -27,7 +27,7 @@
 
     machine.start_job("nginx", user=systemd_user)
     machine.wait_for_unit("nginx.service", user=systemd_user, timeout=30)
-    assert 'nginx' in machine.succeed("curl http://127.0.0.1:8080").lower()
+    assert 'nginx' in machine.wait_until_succeeds("curl http://127.0.0.1:8080", timeout=5).lower()
     containers = get_containers()
     assert containers.keys() == {"nginx"}
 
